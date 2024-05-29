@@ -1,3 +1,7 @@
+body {
+  font-family: Verdana;
+}
+
 .cards {
     display: flex;
     flex-direction: row;
