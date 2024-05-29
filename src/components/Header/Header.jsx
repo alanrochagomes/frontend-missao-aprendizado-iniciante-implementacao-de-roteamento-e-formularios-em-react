@@ -9,6 +9,7 @@ export default function Header() {
 
         <nav>
             <Link to="/">Home</Link>
+            <Link to="/create">Create</Link>
         </nav>
     </header>
     )
