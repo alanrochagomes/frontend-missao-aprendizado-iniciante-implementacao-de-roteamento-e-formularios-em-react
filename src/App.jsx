@@ -1,41 +1,21 @@
-import { useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toast'
+//import 'react-toastify/dist/ReactToastify.css'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
-import Card from './components/Card/Card'
-import { ToastContainer, toast } from 'react-toast'
-import { Api } from './api/api'
-// import 'react-toastify/dist/ReactToastify.css'
+import Home from './pages/Home'
 
-function App() {
-  const [devmons, setDevmons] = useState([])
-
-  async function fetchData() {
-    const apiUrl = Api.personagem.readAll()
-  
-      const response = await Api.buildApiGetRequest(apiUrl)
-    
-      if (response.ok) {
-        const data = await response.json()
-    
-        setDevmons(data)
-      } else {
-        toast.error('Erro ao carregar lista de Devmon.')
-      }
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
   }
+])
 
-  useEffect(function () {
-    fetchData()
-  }, [])
-
+export default function App() {
   return (
     <>
-    <div className="cards">
-      {devmons.map(function (devmon) {
-          return <Card key={devmon.nome} item={devmon} />
-        })}
-      </div>
+      <RouterProvider router={router} />
       <ToastContainer />
     </>
   )
 }
-
-export default App
