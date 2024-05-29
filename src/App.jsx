@@ -1,15 +1,28 @@
-import { ToastContainer } from 'react-toast'
+import { ToastContainer } from "react-toast";
 //import 'react-toastify/dist/ReactToastify.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './App.css'
-import Home from './pages/Home'
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import Header from "./components/Header/Header";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />
-  }
-])
+    element: (
+      <>
+        <div>
+          <Header />
+          <Outlet />
+        </div>
+      </>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ],
+  },
+]);
 
 export default function App() {
   return (
@@ -17,5 +30,5 @@ export default function App() {
       <RouterProvider router={router} />
       <ToastContainer />
     </>
-  )
+  );
 }
